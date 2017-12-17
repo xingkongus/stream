@@ -1,0 +1,50 @@
+<?php
+use think\Url;
+?><div class="">
+
+
+
+	<div class="panel panel-default" style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;">
+		<div>
+			<h2 align="center">创建直播</h2>
+		</div>
+
+<form class="form-outline">
+  <div class="form-group">
+    <label for="appname">直播唯一标识名</label>
+    <input type="text" class="form-control" id="appname" placeholder="请输入应用名">
+  </div>
+  <div class="form-group">
+    <label for="apptitle">直播标题</label>
+    <input type="text" class="form-control" id="apptitle" placeholder="请输入直播标题">
+  </div>
+  <div class="form-group">
+    <label for="maintext">直播描述</label>
+    <textarea type="text" class="form-control" id="maintext" placeholder="请输入直播描述"></textarea>
+  </div>
+  <div class="form-group" style="text-align: center;">
+  	 <a class="btn btn-primary" id="capp">创建</a>
+  </div>
+ 
+</form>
+<script type="text/javascript">
+	$("#capp").click(function(){
+    var appname = $("#appname").get(0).value;
+    var apptitle = $("#apptitle").get(0).value;
+    var maintext = $("#maintext").get(0).value;
+
+    $.post("<?php echo url::build('index/user/createapp'); ?>", { appname: appname, apptitle: apptitle ,maintext: maintext},
+        function(data){
+            data = JSON.parse(data);
+            if(data.status == 200){
+                $(location).attr('href', '<?php echo url::build("index/index/app"); ?>');
+            }else{
+                alert(data.msg);
+            }
+            //alert("Data Loaded: " + data);
+        });
+	});
+</script>
+
+	</div>
+</div>

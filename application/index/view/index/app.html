@@ -1,0 +1,49 @@
+<?php
+use think\Url;
+	function shtm($design_str)
+	{
+		 $str=trim($design_str); // 取得字串同时去掉头尾空格和空回车
+		 //$str=str_replace("<br>","",$str); // 去掉<br>标签
+		 //$str="<p>".trim($str); // 在文本头加入<p>
+		 $str=str_replace("\r\n","<br>",$str); // 用p标签取代换行符
+		 $str=str_replace("\n","<br>",$str); // 用p标签取代换行符
+		 //$str.="</p>\n"; // 文本尾加入</p>
+		 $str=str_replace("<p></p>","",$str); // 去除空段落
+		 $str=str_replace("\n","",$str); // 去掉空行并连成一行
+		 $str=str_replace("</p>","</p>\n",$str); //整理html代码
+		 return $str;
+	}
+
+?><div class="panel panel-default" style="padding: 15px;">
+
+	<a class="btn btn-primary" href="<?php echo url::build('index/index/createapp'); ?>">创建</a>
+</div>
+
+<ul class="list-group">
+<?php
+
+$rtmpurl = HOST.'/hls/';
+	if(!isset($list)){
+
+	}else{
+	//class="list-group-item"
+		foreach($list as $item){
+			echo '<li >
+				<div class="panel panel-default">
+					<div class="panel-body">'
+			.
+			'<h1>'.$item['title'].'</h1>'
+			.'<h3 style="padding-left: 15px;">'.$item['appname'].'</h3>'
+			.'<p style="padding-left: 30px;">'.shtm($item['maintext']).'</p>'
+			.'<p style="padding-left: 20px;">rtmp://' . $rtmpurl .$item['appname'] . '?token=' . $item['token'] .'</p>'
+			.'<p style="padding-left: 20px"><a href="http://'.HOST.'/watch/?app='.$item['appname'].'">观看页面</a></p>'
+			.'		</div>
+				</div>
+			</li>';
+		}
+	}
+
+
+
+?>
+</ul>

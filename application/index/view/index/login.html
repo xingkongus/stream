@@ -1,0 +1,17 @@
+<?php
+use think\Url;
+?>
+<form>
+  <div class="form-group">
+    <label for="username_input">用户名</label>
+    <input type="username" class="form-control" id="username_input" placeholder="请输入用户名">
+  </div>
+  <div class="form-group">
+    <label for="password_input">密码</label>
+    <input type="password" class="form-control" id="password_input" placeholder="请输入密码">
+  </div>
+  <button id='btlogin' type="button" class="btn btn-default"> 登录 </button>
+  <a href="<?php echo Url::build('index/Index/signin');?>" type="button" class="btn btn-default"> 注册 </a>
+</form>
+
+<script src="static/js/login.js"></script>
