@@ -1,3 +1,6 @@
+
+-- MySQL数据表初始化
+
 -- phpMyAdmin SQL Dump
 -- version 4.4.11
 -- http://www.phpmyadmin.net
