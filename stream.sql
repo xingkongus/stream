@@ -1,12 +1,9 @@
-
--- MySQL数据表初始化
-
 -- phpMyAdmin SQL Dump
 -- version 4.4.11
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2017-11-23 16:46:22
+-- Generation Time: 2017-12-21 17:59:46
 -- 服务器版本： 10.1.25-MariaDB-
 -- PHP Version: 7.0.22-0ubuntu0.17.04.1
 
@@ -49,6 +46,28 @@ INSERT INTO `stream_app` (`id`, `appname`, `title`, `maintext`, `token`, `userna
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `stream_app_group`
+--
+
+CREATE TABLE IF NOT EXISTS `stream_app_group` (
+  `id` int(11) NOT NULL COMMENT '自增id',
+  `apps` text COLLATE utf8_bin NOT NULL COMMENT '直播组',
+  `username` tinytext COLLATE utf8_bin NOT NULL COMMENT '创建者',
+  `groupname` varchar(16) COLLATE utf8_bin NOT NULL COMMENT '直播组唯一标识名',
+  `grouptitle` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '直播组标题',
+  `groupmaintext` text COLLATE utf8_bin NOT NULL COMMENT '直播组描述'
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 转存表中的数据 `stream_app_group`
+--
+
+INSERT INTO `stream_app_group` (`id`, `apps`, `username`, `groupname`, `grouptitle`, `groupmaintext`) VALUES
+(4, '["sad","test"]', 'hansin', 'ewe', 'hahah', 'xxxxx');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `stream_rtmp_user`
 --
 
@@ -66,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `stream_rtmp_user` (
 --
 
 INSERT INTO `stream_rtmp_user` (`id`, `username`, `password`, `nickname`, `utype`, `token`) VALUES
-(3, 'hansin', '917928e28bdd7d249d7f77256dbebb8c', '绕韩信', 1, '7fc64aac36864d8ec6d03a934badae44');
+(3, 'hansin', '917928e28bdd7d249d7f77256dbebb8c', '绕韩信', 1, 'e9c3aa2c92a1700360b3b641f54b8a70');
 
 --
 -- Indexes for dumped tables
@@ -76,6 +95,12 @@ INSERT INTO `stream_rtmp_user` (`id`, `username`, `password`, `nickname`, `utype
 -- Indexes for table `stream_app`
 --
 ALTER TABLE `stream_app`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stream_app_group`
+--
+ALTER TABLE `stream_app_group`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -93,6 +118,11 @@ ALTER TABLE `stream_rtmp_user`
 --
 ALTER TABLE `stream_app`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `stream_app_group`
+--
+ALTER TABLE `stream_app_group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `stream_rtmp_user`
 --
