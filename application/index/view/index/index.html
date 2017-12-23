@@ -1,20 +1,69 @@
-        <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>欢迎来到星空直播</h1>
-        <p>来试试把～</p>
-       
-        <p>
-          <a class="btn btn-lg btn-primary" href="?s=/Index/Index/app" role="button">创建一个直播 &raquo;</a>
-        </p>
+<!-- Main component for a primary marketing message or call to action -->
+<div class="jumbotron">
+	<h1>欢迎来到星空直播</h1>
+	<p>星空直播现在处于内测阶段，暂不对外开放注册直播，仅提供观看。</p>
+	<p>如有直播需求，请联系我们 :)</p>
+	<p>
+		<a class="btn btn-lg btn-primary" href="mailto:845612500@qq.com?subject=申请直播" role="button">联系我们 &raquo;</a>
+	 <!-- <a class="btn btn-lg btn-primary" href="?s=/Index/Index/app" role="button">创建一个直播 &raquo;</a>-->
+	</p>
+</div>
+<!--
+<div class="jumbotron">
+	<h1>如何直播？</h1>
+	<p>通过创建直播获取直播推流，继而通过OBS等工具直播。</p>
 
-      </div>
+	<p>
+	  <a class="btn btn-lg btn-primary" href="?s=/Index/Index/about" role="button">详细方法以及工具下载 &raquo;</a>
+	</p>
+</div>
+-->
 
-      <div class="jumbotron">
-        <h1>如何直播？</h1>
-        <p>通过创建直播获取直播推流，继而通过OBS等工具直播。</p>
-       
-        <p>
-          <a class="btn btn-lg btn-primary" href="?s=/Index/Index/about" role="button">详细方法以及工具下载 &raquo;</a>
-        </p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        当前直播
+    </div>
+    <div id="applist" class="panel-body">
+        现在没有直播 : )
+    </div>
+</div>
 
-      </div>
+
+
+<script>
+//加载直播裂变
+$.ajax({
+	url: "http://live.xingkong.us/?s=/index/user/apps",
+	success: function(res){
+		var tmp = res;
+		try{
+			res = JSON.parse(res);
+		}catch(e){
+			res = tmp;
+		}
+		
+		var length = res.apps.length;
+		var html = '<ul class="list-group">';
+		for(var i = 0;i < length;i++){
+			if(!res.apps[i].alive)
+				continue;
+			html += '<li class="list-group-item">';
+			html += '<div class="media">';
+
+
+			html += '<h2 class="media-heading">' + res.apps[i].title + '<p><small>' + res.apps[i].user + '</small></p>' + '</h2>';
+			html += '<p style="padding-left: 20px;">' + res.apps[i].maintext + '</p>';
+
+			html += '<p style="padding-left: 20px;">';
+			html += '<a href="' + res.src + res.apps[i].appname + '">';
+			html += '观看';
+			html += "</a>";
+			html += '</p>';
+			html += "</div>";
+			html += "</li>";
+		}
+		html += '</ul>';
+		$('#applist').html(html);
+	},
+	dataType: 'json'});
+</script>
