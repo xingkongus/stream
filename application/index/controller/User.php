@@ -309,7 +309,7 @@ class User extends Controller {
 
 				}
 				
-				$result['src'] = 'http://live.xingkong.us/hls/'.$appname.'.m3u8';
+				$result['src'] = 'http://'.HOST.'/hls/'.$appname.'.m3u8';
 				$result['alive'] = file_exists('/media/xingkong/Data/Stream/hls/'.$appname.'.m3u8');
 			}
 			
