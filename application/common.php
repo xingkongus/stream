@@ -11,4 +11,4 @@
 
 // 应用公共文件
 define('TITLE','星空直播');
-define('HOST','live.xingkong.us');
+define('HOST','xingkongus.gqt.gcu.edu.cn');

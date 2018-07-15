@@ -404,7 +404,7 @@ class User extends Controller {
 						$info['maintext'] = $app->maintext;
 						if($isCreater)
 							$info['token'] = $app->token;
-						$info['src'] = 'http://live.xingkong.us/hls/'.$appname.'.m3u8';
+						$info['src'] = 'http://'.HOST.'/hls/'.$appname.'.m3u8';
 						$info['alive'] = file_exists('/media/xingkong/Data/Stream/hls/'.$appname.'.m3u8');
 						array_push($result['apps'],$info);
 					}
